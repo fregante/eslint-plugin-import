@@ -298,6 +298,9 @@ ExportMap.get = function (source, context) {
 
 ExportMap.for = function (context) {
   const { path } = context;
+  
+  // ignore excluded packages
+  if (path === false) return null;
 
   const cacheKey = hashObject(context).digest('hex');
   let exportMap = exportCache.get(cacheKey);
